@@ -1,0 +1,87 @@
+.tasks {
+  margin: 35px 35px 35px 200px;
+  padding-left: 50px;
+
+  h1 {
+    color: black;
+  }
+
+  &__task-name {
+    background: #F3F3F3;
+    font-size: 18px;
+    border: none;
+    height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    padding-left: 20px;
+    &:focus {
+      outline: 1px solid #EA5959;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+  }
+
+  li {
+    margin: 16px 0;
+  }
+}
+
+.task-item {
+  display: flex;
+  line-height: 25px;
+  font-size: 18px;
+  align-items: center;
+
+  &__category {
+    margin-left: 18px;
+    padding: 0 30px;
+    background: #EA5959;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &__check-button {
+    display: none;
+  }
+
+  &__check-button + label {
+    position: relative;
+    padding-left: 50px;
+    user-select: none;
+    transition: all 0.1s linear;
+    &::before {
+      content: '';
+    transition: all 0.1s linear;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border: 1px solid #EA5959;
+      border-radius: 8px;
+    }
+  }
+
+  &__check-button:hover + label {
+    color: black;
+    &::before {
+      content: '';
+      background-color: #ea595944;
+    }
+  }
+
+  &__check-button:checked + label {
+    &::before {
+      content: '';
+      background-color: #EA5959;
+    }
+  }
+
+}
