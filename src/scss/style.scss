@@ -1,8 +1,13 @@
-@import-normalize
+// @import-normalize
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./font/Lato-Regular.ttf');
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto';
+  font-family: 'Lato';
 }
 
 #root {
@@ -23,6 +28,11 @@ input {
 p {
   padding: 0;
   margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
 }
 
 code {

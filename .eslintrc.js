@@ -8,7 +8,6 @@ module.exports = {
     'airbnb-typescript',
     'react-app',
     'react-app/jest',
-    'airbnb',
     'plugin:import/recommended',
     'plugin:import/typescript',
   ],
@@ -40,6 +39,14 @@ module.exports = {
     },
   },
   rules: {
+    // To enable function expression for component → uncomment rule below
+    // 'react/function-component-definition': [
+    //   2,
+    //   {
+    //     namedComponents: 'arrow-function',
+    //   },
+    // ],
+    'no-param-reassign': 0,
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/react-in-jsx-scope': 'off',
     'import/extensions': [
@@ -50,6 +57,23 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
+      },
+    ],
+    'react/prop-types': 'off',
+    'react/require-default-props': 'off',
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        labelComponents: [
+          'CustomInputLabel',
+        ],
+        labelAttributes: [
+          'label',
+        ],
+        controlComponents: [
+          'CustomInput',
+        ],
+        depth: 3,
       },
     ],
 
