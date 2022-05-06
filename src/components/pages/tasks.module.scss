@@ -2,23 +2,6 @@
   margin: 35px 35px 35px 200px;
   padding-left: 50px;
 
-  h1 {
-    color: black;
-  }
-
-  &__task-name {
-    background: #F3F3F3;
-    font-size: 18px;
-    border: none;
-    height: 50px;
-    width: 100%;
-    border-radius: 8px;
-    padding-left: 20px;
-    &:focus {
-      outline: 1px solid #EA5959;
-    }
-  }
-
   ul {
     display: flex;
     flex-direction: column;
@@ -26,7 +9,7 @@
   }
 
   li {
-    margin: 16px 0;
+    margin: 5px 0;
   }
 }
 

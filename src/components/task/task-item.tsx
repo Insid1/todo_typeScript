@@ -11,6 +11,14 @@ function TaskItem({
   id, text, category = 'unselected',
   isDone = false, toggleIsDone, removeTask,
 }:TaskItemProps) {
+  const handleToggleIsDone: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    toggleIsDone(id);
+  };
+
+  const handleClickDelete:React.MouseEventHandler<HTMLButtonElement> = (evt) => {
+    removeTask(id);
+  };
+
   return (
     <div className={styles['task-item']}>
       <input
@@ -18,12 +26,14 @@ function TaskItem({
         className={styles['task-item__check-button']}
         type="checkbox"
         checked={isDone}
+        onChange={handleToggleIsDone}
       />
       <label htmlFor={id}>{text}</label>
       <div className={styles['task-item__category']}>{category}</div>
       <button
         type="button"
         className={styles['task-item__delete-button']}
+        onClick={handleClickDelete}
       >
         <img
           src={TrashCan}

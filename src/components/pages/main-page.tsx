@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { ITaskItem } from 'interfaces/task';
 import { getRandomValueFromArr } from 'util/common';
 import { useState } from 'react';
+import TaskForm from 'components/task-form/task-form';
 import styles from './tasks.module.scss';
 
 enum CATEGORIES {
@@ -38,22 +39,15 @@ const mockTasks: ITaskItem[] = [
 
 function MainPage() {
   const [tasks, setTasks] = useState<ITaskItem[]>(mockTasks);
-  const [taskText, setTaskText] = useState('');
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (evt) => {
-    if (evt.key === 'enter' || evt.key === 'Enter') {
-      addTask();
-    }
-  };
-  const addTask = (): void => {
+  const addTask = (text: string): void => {
     const newTask:
     ITaskItem = {
       id: nanoid(3),
-      text: taskText,
+      text,
       category: getRandomValueFromArr<string>(Object.values(CATEGORIES)),
     };
     setTasks((prevState) => [...prevState, newTask]);
-    setTaskText('');
   };
   const toggleIsDone = (id: string): void => {
     setTasks((prevTasks) => prevTasks.map((task) => {
@@ -69,21 +63,11 @@ function MainPage() {
   const removeTask = (id: string): void => {
     setTasks((prevTasks) => prevTasks.filter((task) => id !== task.id));
   };
-  const handleInputChange:
-  React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-    setTaskText(evt.target.value);
-  };
-  // const handleCheckBoxChange = ()
 
   return (
     <div className={styles.tasks}>
-      <h1>All Tasks</h1>
-      <input
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        className={styles['tasks__task-name']}
-        placeholder='Add a new task inside "All" category'
-        value={taskText}
+      <TaskForm
+        addTask={addTask}
       />
       {tasks && (
       <TasksList
