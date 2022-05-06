@@ -1,14 +1,14 @@
 import React from 'react';
-import { ITaskItem } from 'interfaces/task';
+import { useAppSelector } from 'store/hooks';
 import TaskItem from './task-item';
 
-interface TasksListProps {
-  tasks: ITaskItem[],
-  toggleIsDone: (id: string) => void,
-  removeTask: (id: string) => void,
-}
+function TasksList() {
+  const tasks = useAppSelector((state) => state.DATA.tasks);
 
-function TasksList({ tasks, toggleIsDone, removeTask } :TasksListProps) {
+  if (tasks.length === 0) {
+    return <p>Add your first task!</p>;
+  }
+
   return (
     <ul>
       {tasks.map((task):React.ReactNode => (
@@ -18,8 +18,6 @@ function TasksList({ tasks, toggleIsDone, removeTask } :TasksListProps) {
             text={task.text}
             category={task.category}
             isDone={task.isDone}
-            toggleIsDone={toggleIsDone}
-            removeTask={removeTask}
           />
         </li>
       ))}

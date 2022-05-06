@@ -13,34 +13,13 @@ enum CATEGORIES {
   PAYMENT = 'PAYMENT',
 }
 
-const mockTasks: ITaskItem[] = [
-  {
-    id: nanoid(3),
-    text: 'sometext1',
-    category: getRandomValueFromArr<string>(Object.values(CATEGORIES)),
-  },
-  {
-    id: nanoid(3),
-    text: 'sometext2',
-    category: getRandomValueFromArr<string>(Object.values(CATEGORIES)),
-    isDone: true,
-  },
-  {
-    id: nanoid(3),
-    text: 'sometext3',
-    category: getRandomValueFromArr<string>(Object.values(CATEGORIES)),
-  },
-  {
-    id: nanoid(3),
-    text: 'sometext4',
-    category: getRandomValueFromArr<string>(Object.values(CATEGORIES)),
-  },
-];
-
 function MainPage() {
-  const [tasks, setTasks] = useState<ITaskItem[]>(mockTasks);
+  const [tasks, setTasks] = useState<ITaskItem[]>([]);
 
   const addTask = (text: string): void => {
+    if (text.length === 0) {
+      return;
+    }
     const newTask:
     ITaskItem = {
       id: nanoid(3),
@@ -66,15 +45,9 @@ function MainPage() {
 
   return (
     <div className={styles.tasks}>
-      <TaskForm
-        addTask={addTask}
-      />
+      <TaskForm />
       {tasks && (
-      <TasksList
-        tasks={tasks}
-        toggleIsDone={toggleIsDone}
-        removeTask={removeTask}
-      />
+      <TasksList />
       )}
 
     </div>

@@ -1,22 +1,21 @@
 import { ITaskItem } from 'interfaces/task';
 import TrashCan from 'scss/img/trash-can.svg';
+import { removeTask, updateIsDone } from 'store/data/reducer';
+import { useAppDispatch } from 'store/hooks';
 import styles from './task.module.scss';
-
-interface TaskItemProps extends ITaskItem {
-  toggleIsDone: (id: string) => void,
-  removeTask: (id: string) => void,
-}
 
 function TaskItem({
   id, text, category = 'unselected',
-  isDone = false, toggleIsDone, removeTask,
-}:TaskItemProps) {
+  isDone = false,
+}:ITaskItem) {
+  const dispatch = useAppDispatch();
+
   const handleToggleIsDone: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-    toggleIsDone(id);
+    updateIsDone(id);
   };
 
   const handleClickDelete:React.MouseEventHandler<HTMLButtonElement> = (evt) => {
-    removeTask(id);
+    dispatch(removeTask(id));
   };
 
   return (

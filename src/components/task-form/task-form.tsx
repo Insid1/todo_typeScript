@@ -1,26 +1,30 @@
 import { useState } from 'react';
+import { addTask } from 'store/data/reducer';
+import { useAppDispatch } from 'store/hooks';
 import styles from './task-form.module.scss';
+// import addT
 
-interface TaskFormProps {
-  addTask: (text: string) => void,
-}
+// interface TaskFormProps {
+//   addTask: (text: string) => void,
+// }
 
-function TaskForm({ addTask } :TaskFormProps) {
+function TaskForm() {
   const [taskText, setTaskText] = useState('');
+  const dispatch = useAppDispatch();
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setTaskText(evt.target.value);
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (evt) => {
-    if ((evt.key === 'enter' || evt.key === 'Enter') && taskText.length !== 0) {
-      addTask(taskText);
+    if (evt.key === 'enter' || evt.key === 'Enter') {
+      dispatch(addTask(taskText));
       setTaskText('');
     }
   };
 
   const handleClickAddBtn: React.MouseEventHandler<HTMLInputElement> = (evt) => {
-    addTask(taskText);
+    dispatch(addTask(taskText));
     setTaskText('');
   };
 
