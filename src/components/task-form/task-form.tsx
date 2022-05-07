@@ -1,16 +1,19 @@
+import Category from 'components/categories/category';
+import { ITask } from 'interfaces/task';
 import { useState } from 'react';
 import { addTask } from 'store/data/reducer';
 import { useAppDispatch } from 'store/hooks';
+import { Categories } from 'util/enum';
 import styles from './task-form.module.scss';
-// import addT
-
-// interface TaskFormProps {
-//   addTask: (text: string) => void,
-// }
 
 function TaskForm() {
   const [taskText, setTaskText] = useState('');
+  const [taskCategory, setTaskCategory] = useState(Categories.all);
   const dispatch = useAppDispatch();
+  const newTask: ITask = {
+    category: taskCategory,
+    text: taskText,
+  };
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setTaskText(evt.target.value);
@@ -18,13 +21,13 @@ function TaskForm() {
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (evt) => {
     if (evt.key === 'enter' || evt.key === 'Enter') {
-      dispatch(addTask(taskText));
+      dispatch(addTask(newTask));
       setTaskText('');
     }
   };
 
   const handleClickAddBtn: React.MouseEventHandler<HTMLInputElement> = (evt) => {
-    dispatch(addTask(taskText));
+    dispatch(addTask(newTask));
     setTaskText('');
   };
 
@@ -46,6 +49,7 @@ function TaskForm() {
           onClick={handleClickAddBtn}
         />
       </div>
+      <Category setActiveCategory={setTaskCategory} activeCategory={taskCategory} />
     </div>
   );
 }

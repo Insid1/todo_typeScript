@@ -17,7 +17,7 @@ function TasksList() {
             id={task.id}
             text={task.text}
             category={task.category}
-            isDone={task.isDone}
+            completed={task.completed}
           />
         </li>
       ))}

@@ -1,4 +1,3 @@
-
 .task-item {
   display: flex;
   line-height: 25px;
@@ -9,12 +8,10 @@
   padding: 10px 0;
   transition: box-shadow 0.1s ease-in-out;
 
-
-
   &__category {
     margin-left: 18px;
     padding: 0 30px;
-    background: #EA5959;
+    background: #ea5959;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -24,9 +21,9 @@
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   }
 
-  &:hover &__delete-button{
+  &:hover &__delete-button {
     opacity: 0.5;
-}
+  }
 
   &__delete-button {
     margin-left: auto;
@@ -49,8 +46,8 @@
     user-select: none;
     transition: all 0.1s linear;
     &::before {
-      content: '';
-    transition: all 0.1s linear;
+      content: "";
+      transition: all 0.1s linear;
 
       position: absolute;
       top: 50%;
@@ -58,26 +55,38 @@
       transform: translateY(-50%);
       width: 30px;
       height: 30px;
-      border: 1px solid #EA5959;
+      border-width: 1px;
+      border-style: solid;
       border-radius: 8px;
+      border-color: #ea5959;
     }
   }
 
   &__check-button:hover + label {
     color: black;
     &::before {
-      content: '';
+      content: "";
       background-color: #ea595944;
     }
   }
 
   &__check-button:checked + label {
     &::before {
-      content: '';
-      background-color: #EA5959;
+      content: "";
+      background-color: #ea5959;
     }
   }
 
-  
-
+  &__all {
+    background-color: #e45555;
+  }
+  &__groceries {
+    background-color: #03ae03;
+  }
+  &__education {
+    background-color: #4545ff;
+  }
+  &__payments {
+    background-color: #009b84;
+  }
 }

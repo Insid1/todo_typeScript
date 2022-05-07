@@ -1,0 +1,43 @@
+.category {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
+
+  input {
+    display: none;
+
+    &:checked + label {
+      opacity: 1;
+      box-shadow: 6px 6px 12px 0px rgba(34, 60, 80, 0.5);
+    }
+  }
+
+  &__label {
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: capitalize;
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: gray;
+    opacity: 0.5;
+    transition: opacity 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__all {
+    background-color: #e45555;
+  }
+  &__groceries {
+    background-color: #03ae03;
+  }
+  &__education {
+    background-color: #4545ff;
+  }
+  &__payments {
+    background-color: #009b84;
+  }
+}

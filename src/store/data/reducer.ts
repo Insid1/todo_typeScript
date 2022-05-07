@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
-import { ITaskItem } from 'interfaces/task';
+import { ITask, ITaskItem } from 'interfaces/task';
 
 interface IDataState {
   tasks: ITaskItem[]
@@ -14,13 +14,8 @@ const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    addTask(state, action: PayloadAction<string>) {
-      state.tasks.push({
-        id: nanoid(3),
-        text: action.payload,
-        category: 'none',
-        isDone: false,
-      });
+    addTask(state, action: PayloadAction<ITask>) {
+      state.tasks.push({ ...action.payload, id: nanoid(), completed: false });
     },
     removeTask(state, action: PayloadAction<string>) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
@@ -30,7 +25,7 @@ const dataSlice = createSlice({
         (task) => task.id === action.payload,
       );
       if (updatedTask) {
-        updatedTask.isDone = !updatedTask.isDone;
+        updatedTask.completed = !updatedTask.completed;
       }
     },
   },
