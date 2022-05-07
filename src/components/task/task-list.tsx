@@ -1,9 +1,10 @@
 import React from 'react';
+import { selectFilteredTasks } from 'store/data/selectors';
 import { useAppSelector } from 'store/hooks';
 import TaskItem from './task-item';
 
 function TasksList() {
-  const tasks = useAppSelector((state) => state.DATA.tasks);
+  const tasks = useAppSelector(selectFilteredTasks);
 
   if (tasks.length === 0) {
     return <p>Add your first task!</p>;

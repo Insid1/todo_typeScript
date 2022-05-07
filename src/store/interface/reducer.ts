@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Categories } from 'util/enum';
 
 interface IInterfaceState {
   sortingType: string,
-  filterType: string,
+  filterType: Categories,
 }
 
 const initialState: IInterfaceState = {
   sortingType: 'none',
-  filterType: 'all',
+  filterType: Categories.all,
 };
 
 const interfaceSlice = createSlice({
@@ -17,7 +18,7 @@ const interfaceSlice = createSlice({
     setSortingType(state, action: PayloadAction<string>) {
       state.sortingType = action.payload;
     },
-    setFilterType(state, action: PayloadAction<string>) {
+    setFilterType(state, action: PayloadAction<Categories>) {
       state.filterType = action.payload;
     },
   },
